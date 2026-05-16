@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Our First Month Together ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Manrope',sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      overflow-x:hidden;
+      background:#fffaf7;
+      color:#5f5656;
+    }
+
+    /* BACKGROUND BLOBS */
+
+    .blob{
+      position:fixed;
+      border-radius:50%;
+      filter:blur(100px);
+      z-index:-1;
+      opacity:0.5;
+    }
+
+    .blob1{
+      width:350px;
+      height:350px;
+      background:#ffd6dc;
+      top:-100px;
+      left:-100px;
+    }
+
+    .blob2{
+      width:300px;
+      height:300px;
+      background:#ffe9cc;
+      bottom:-100px;
+      right:-50px;
+    }
+
+    .blob3{
+      width:250px;
+      height:250px;
+      background:#f5dfff;
+      top:40%;
+      left:60%;
+    }
+
+    /* STARTING SCREENS */
+
+    .screen{
+      width:100%;
+      height:100vh;
+      position:fixed;
+      top:0;
+      left:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      background:linear-gradient(135deg,#fff6f6,#fffaf2,#fff7fb);
+      z-index:100;
+      transition:1s;
+      text-align:center;
+      padding:20px;
+    }
+
+    .hidden{
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .screen h1{
+      font-size:4rem;
+      color:#d79aa6;
+      font-family:'Great Vibes',cursive;
+      margin-bottom:20px;
+    }
+
+    .screen p{
+      max-width:600px;
+      line-height:2;
+      color:#7c6d6d;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      padding:16px 40px;
+      border:none;
+      border-radius:50px;
+      background:#e3afb7;
+      color:white;
+      cursor:pointer;
+      font-size:1rem;
+      transition:0.3s;
+      box-shadow:0 10px 25px rgba(227,175,183,0.3);
+    }
+
+    .btn:hover{
+      transform:translateY(-5px);
+    }
+
+    .heartBtn{
+      font-size:4rem;
+      background:none;
+      border:none;
+      cursor:pointer;
+      animation:bounce 1s infinite;
+    }
+
+    @keyframes bounce{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-10px);
+      }
+    }
+
+    .counter{
+      margin-top:20px;
+      font-size:2rem;
+      color:#c98b99;
+    }
+
+    /* MAIN WEBSITE */
+
+    #mainWebsite{
+      display:none;
+    }
+
+    /* HERO SECTION */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      padding:100px 12%;
+      position:relative;
+    }
+
+    .hero h1{
+      font-size:5rem;
+      color:#d490a1;
+      font-family:'Great Vibes',cursive;
+      animation:fadeDown 1.5s ease;
+    }
+
+    .hero p{
+      font-size:1.25rem;
+font-weight:400;
+letter-spacing:0.3px;
+      margin-top:30px;
+      max-width:850px;
+      line-height:2.2;
+      color:#6e6060;
+      font-size:1.1rem;
+      animation:fadeUp 2s ease;
+    }
+
+    /* COMMON SECTION */
+
+    section{
+      padding:100px 12%;
+    }
+
+    .title{
+      text-align:center;
+      font-size:4rem;
+      color:#d490a1;
+      font-family:'Great Vibes',cursive;
+      margin-bottom:30px;
+    }
+
+    .text{
+      text-align:center;
+      max-width:800px;
+      margin:auto;
+      line-height:2;
+      color:#726363;
+    }
+
+    /* SLIDESHOW */
+
+    .slideshow-container{
+      max-width:900px;
+      margin:60px auto 0;
+      position:relative;
+    }
+
+    .slide{
+      display:none;
+      animation:fadeEffect 1.5s;
+    }
+
+    .slide img{
+      width:100%;
+      height:550px;
+      object-fit:cover;
+      border-radius:30px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    @keyframes fadeEffect{
+      from{
+        opacity:0.4;
+      }
+      to{
+        opacity:1;
+      }
+    }
+
+    /* BUTTON */
+
+    .nextBtn{
+      margin:50px auto 0;
+      display:block;
+      padding:16px 40px;
+      border:none;
+      border-radius:50px;
+      background:#dfacb5;
+      color:white;
+      font-size:1rem;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 10px 25px rgba(223,172,181,0.3);
+    }
+
+    .nextBtn:hover{
+      transform:translateY(-5px);
+    }
+
+    /* LETTER SECTION */
+
+    .letterBox{
+      font-size:1.15rem;
+font-family:'Cormorant Garamond',serif;
+font-weight:500;
+      max-width:900px;
+      margin:60px auto 0;
+      background:rgba(255,255,255,0.7);
+      padding:50px;
+      border-radius:30px;
+      line-height:2.3;
+      color:#6f6161;
+      backdrop-filter:blur(10px);
+      box-shadow:0 15px 40px rgba(0,0,0,0.05);
+    }
+
+    /* PROPOSAL */
+
+    .proposalSection{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+    }
+
+    .proposalSection h1{
+      font-size:5rem;
+      font-family:'Great Vibes',cursive;
+      color:#d38c9d;
+    }
+
+    .proposalSection p{
+      margin-top:30px;
+      max-width:850px;
+      line-height:2.2;
+      color:#6e6060;
+      font-size:1.1rem;
+    }
+
+    /* BUTTONS */
+
+    .buttons{
+      margin-top:50px;
+      position:relative;
+      width:100%;
+      height:180px;
+    }
+
+    .yesBtn,
+    .noBtn{
+      position:absolute;
+      padding:18px 45px;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      font-size:1rem;
+      transition:0.3s;
+    }
+
+    .yesBtn{
+      left:38%;
+      background:#dfacb5;
+      color:white;
+      box-shadow:0 10px 25px rgba(223,172,181,0.3);
+    }
+
+    .yesBtn:hover{
+      transform:scale(1.05);
+    }
+
+    .noBtn{
+      left:55%;
+      background:#f4e4df;
+      color:#7b6d6d;
+    }
+
+    /* FINAL MESSAGE */
+
+    .finalMessage{
+      display:none;
+      margin-top:40px;
+      font-size:2rem;
+      color:#d18d9d;
+      animation:pop 1s forwards;
+    }
+
+    @keyframes pop{
+      from{
+        opacity:0;
+        transform:scale(0);
+      }
+      to{
+        opacity:1;
+        transform:scale(1);
+      }
+    }
+
+    /* FLOATING HEARTS */
+
+    .heart{
+      position:fixed;
+      bottom:-20px;
+      font-size:20px;
+      animation:float 6s linear infinite;
+      opacity:0.7;
+      pointer-events:none;
+    }
+
+    @keyframes float{
+      from{
+        transform:translateY(0) scale(0.5);
+      }
+      to{
+        transform:translateY(-110vh) scale(1.3);
+      }
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes fadeDown{
+      from{
+        opacity:0;
+        transform:translateY(-30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      .screen h1,
+      .hero h1,
+      .proposalSection h1{
+        font-size:3rem;
+      }
+
+      .title{
+        font-size:2.8rem;
+      }
+
+      .slide img{
+        height:400px;
+      }
+
+      .yesBtn{
+        left:18%;
+      }
+
+      .noBtn{
+        left:55%;
+      }
+
+      .letterBox{
+        padding:30px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+
+  <!-- SCREEN 1 -->
+
+  <div class="screen" id="screen1">
+
+    <h1>Hey Jyothika ❤️</h1>
+
+    <p>
+      I wanted to make something that reminds you how much you mean to me ❤️
+    </p>
+
+    <button class="btn" onclick="nextScreen()">
+      Open It ✨
+    </button>
+
+  </div>
+
+  <!-- SCREEN 2 -->
+
+  <div class="screen hidden" id="screen2">
+
+    <h1>One Tiny Challenge 😋</h1>
+
+    <p>
+      Click the heart 5 times to unlock our surprise ❤️
+    </p>
+
+    <button class="heartBtn" onclick="heartGame()">
+      ❤️
+    </button>
+
+    <div class="counter" id="counter">
+      0 / 5
+    </div>
+
+  </div>
+
+  <!-- MAIN WEBSITE -->
+
+  <div id="mainWebsite">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <h1>
+        One Month With You ❤️
+      </h1>
+
+      <p>
+        It honestly feels unreal how someone
+        can make life feel this soft,
+        peaceful,
+        beautiful,
+        and special.
+        <br><br>
+
+        one Month ela aypoyindo kuda ardham avvatledu,
+        it completed so fast. i wish i could spend every second admiring with you<br><br>
+
+        These past 30 days with you
+        became my favorite chapter already.
+        <br><br>
+
+        one month is not enough to express how much i care about you, even one thousand years also not enough to completely express my love.
+        <br><br>
+
+        I never expected someone
+        to mean this much to me this quickly,
+        but here we are ❤️
+      </p>
+
+    </section>
+
+    <!-- SLIDESHOW -->
+
+    <section class="slideshowSection">
+
+      <h2 class="title">
+        Our Beautiful Memories 📸
+      </h2>
+
+      <p class="text">
+        Every picture with you feels like a memory
+        I never want to lose ❤️
+      </p>
+
+      <div class="slideshow-container">
+
+        <!-- CHANGE YOUR PHOTOS HERE -->
+
+        <div class="slide fade">
+          <img src="images/photo1.jpg">
+        </div>
+
+        <div class="slide fade">
+          <img src="images/photo2.jpg">
+        </div>
+
+        <div class="slide fade">
+          <img src="images/photo3.jpg">
+        </div>
+
+        <div class="slide fade">
+          <img src="images/photo4.jpg">
+        </div>
+
+      </div>
+
+      <button class="nextBtn" onclick="scrollLetter()">
+        Read Something Special 💌
+      </button>
+
+    </section>
+
+    <!-- LETTER -->
+
+    <section class="letterSection" id="letterSection">
+
+      <h2 class="title">
+        A Little Message For You ❤️
+      </h2>
+
+      <div class="letterBox">
+
+        <p>
+
+          I know one month may sound small to the world,
+          but to me,
+          these days became memories
+          I genuinely never want to lose.
+          <br><br>
+
+          Thank you for existing in my life.
+          Thank you for your time,
+          your care,
+          your smile,
+          your patience,
+          and the happiness you unknowingly give me every day.
+          <br><br>
+
+          You made ordinary moments feel special.
+          <br><br>
+
+          Even the smallest conversations with you
+          somehow stay in my head for hours.
+          <br><br>
+
+          And honestly?
+          I still get excited every single time
+          your name pops up on my phone ❤️
+          <br><br>
+
+          If this is how beautiful one month feels,
+          I can only imagine how beautiful forever with you would be.
+
+        </p>
+
+      </div>
+
+      <button class="nextBtn" onclick="scrollProposal()">
+        One Last Thing ❤️
+      </button>
+
+    </section>
+
+    <!-- FINAL PROPOSAL -->
+
+    <section class="proposalSection" id="proposalSection">
+
+      <h1>
+        Will You Stay With Me Forever?
+      </h1>
+
+      <p>
+
+        I don’t know what the future holds…
+        <br><br>
+
+        But I know I want you in it.
+        <br><br>
+
+        Through every laugh,
+        every late-night conversation,
+        every achievement,
+        every bad day,
+        every soft moment,
+        and every memory still waiting for us.
+        <br><br>
+
+        So today…
+        officially…
+        with all my heart…
+        <br><br>
+
+        Will you be mine? ❤️
+
+      </p>
+
+      <div class="buttons">
+
+        <button class="yesBtn" onclick="accepted()">
+          YES ❤️
+        </button>
+
+        <button class="noBtn" id="noBtn">
+          You sure? 🥺
+        </button>
+
+      </div>
+
+      <div class="finalMessage" id="finalMessage">
+
+        YOU JUST MADE ME THE HAPPIEST PERSON ALIVE ❤️✨
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- MUSIC -->
+
+  <audio autoplay loop>
+
+    <!-- CHANGE MUSIC HERE -->
+
+    <source src="music/song.mp3" type="audio/mp3">
+
+  </audio>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    /* OPEN SECOND SCREEN */
+
+    function nextScreen(){
+
+      document.getElementById("screen1")
+      .classList.add("hidden");
+
+      document.getElementById("screen2")
+      .classList.remove("hidden");
+
+    }
+
+    /* HEART GAME */
+
+    let taps = 0;
+
+    function heartGame(){
+
+      taps++;
+
+      document.getElementById("counter")
+      .innerHTML = taps + " / 5";
+
+      if(taps >= 5){
+
+        document.getElementById("screen2")
+        .classList.add("hidden");
+
+        document.getElementById("mainWebsite")
+        .style.display = "block";
+
+        floatingHearts();
+
+      }
+
+    }
+
+    /* SLIDESHOW */
+
+    let slideIndex = 0;
+
+    showSlides();
+
+    function showSlides(){
+
+      let slides =
+      document.getElementsByClassName("slide");
+
+      for(let i=0; i<slides.length; i++){
+
+        slides[i].style.display = "none";
+
+      }
+
+      slideIndex++;
+
+      if(slideIndex > slides.length){
+
+        slideIndex = 1;
+
+      }
+
+      slides[slideIndex - 1]
+      .style.display = "block";
+
+      setTimeout(showSlides,3000);
+
+    }
+
+    /* SCROLL FUNCTIONS */
+
+    function scrollLetter(){
+
+      document.getElementById("letterSection")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+
+    }
+
+    function scrollProposal(){
+
+      document.getElementById("proposalSection")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+
+    }
+
+    /* RUNAWAY NO BUTTON */
+
+    const noBtn =
+    document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseover",()=>{
+
+      let x = Math.random() * 300;
+
+      let y = Math.random() * 100;
+
+      noBtn.style.left = x + "px";
+
+      noBtn.style.top = y + "px";
+
+    });
+
+    /* ACCEPTED */
+
+    function accepted(){
+
+      document.getElementById("finalMessage")
+      .style.display = "block";
+
+      burstHearts();
+
+    }
+
+    /* FLOATING HEARTS */
+
+    function floatingHearts(){
+
+      setInterval(()=>{
+
+        const heart =
+        document.createElement("div");
+
+        heart.classList.add("heart");
+
+        heart.innerHTML = "❤️";
+
+        heart.style.left =
+        Math.random()*100 + "vw";
+
+        heart.style.fontSize =
+        Math.random()*20 + 20 + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+
+          heart.remove();
+
+        },6000);
+
+      },300);
+
+    }
+
+    /* HEART BURST */
+
+    function burstHearts(){
+
+      for(let i=0; i<100; i++){
+
+        setTimeout(()=>{
+
+          const heart =
+          document.createElement("div");
+
+          heart.classList.add("heart");
+
+          heart.innerHTML = "💖";
+
+          heart.style.left =
+          Math.random()*100 + "vw";
+
+          heart.style.fontSize =
+          Math.random()*30 + 20 + "px";
+
+          document.body.appendChild(heart);
+
+          setTimeout(()=>{
+
+            heart.remove();
+
+          },4000);
+
+        },i*80);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+
+</html>
